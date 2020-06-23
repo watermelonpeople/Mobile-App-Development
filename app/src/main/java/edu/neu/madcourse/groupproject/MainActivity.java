@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
 
 
-        stepCounterTextView = findViewById(R.id.textView2);
+        stepCounterTextView = findViewById(R.id.showSteps);
     }
 
     @Override
