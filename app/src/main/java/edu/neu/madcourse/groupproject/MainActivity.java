@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
 
 
-        stepCounterTextView = findViewById(R.id.textView2);
+        stepCounterTextView = findViewById(R.id.showSteps);
     }
 
     @Override
@@ -92,6 +92,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             case R.id.action_Profile:
                 Toast.makeText(MainActivity.this, "Profile clicked", Toast.LENGTH_LONG).show();
                 break;
+            case R.id.action_Game:
+                Toast.makeText(MainActivity.this, "Game clicked", Toast.LENGTH_LONG).show();
+                break;
+
         }
 
 

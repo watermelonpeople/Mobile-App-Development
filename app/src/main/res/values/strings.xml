@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GroupProject</string>
+    <string name="show_today_step">Today Steps:</string>
+    <string name="today_step">Hello</string>
 </resources>

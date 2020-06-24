@@ -13,13 +13,19 @@
         app:showAsAction="ifRoom" />
 
 
-
     <item
         android:id="@+id/action_Profile"
         android:orderInCategory="300"
-        android:title="User"
+        android:title="Profile"
         android:icon="@drawable/ic_baseline_account_circle_24"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_Game"
+        android:orderInCategory="300"
+        android:title="Game"
+        android:icon="@drawable/ic_baseline_videogame_asset_24"
+        app:showAsAction="ifRoom"/>
 
 
 
