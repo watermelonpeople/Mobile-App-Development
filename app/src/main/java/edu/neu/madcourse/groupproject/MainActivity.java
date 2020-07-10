@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         stepCount = sharedPreferences.getInt("stepCount", 0);
 
+        //Move this into onCreate for actual app. This method only in onResume for testing.
         restartStatsDaily();
     }
 
