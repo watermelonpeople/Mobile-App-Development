@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private static final int REQUEST_ACTIVITY_RECOGNITION = 1;
     private static final int UPDATE_STEP = 2;
-    private static final String INTENT_FILTER = "edu.neu.madcourse.groupproject.IntentFilter";
+    private static final String INTENT_FILTER_DAY = "edu.neu.madcourse.groupproject.IntentFilterDay";
+    private static final String INTENT_FILTER_MINUTE = "edu.neu.madcourse.groupproject.IntentFilterMinute";
 
     private int hour = 0; //for debugging, pretend this is the hour
     private int stepCount = 0; //associated with stepCounterTextView
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         XAxis xAxis = barChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         YAxis left = barChart.getAxisLeft();
-        left.setAxisMaximum(1000f);
+        //left.setAxisMaximum(500f);
         left.setAxisMinimum(0f);
         barChart.getAxisRight().setEnabled(false);
 
@@ -181,7 +182,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private void restartStatsDaily() {
         //THE INTENT IS HERE
-        Intent intent = new Intent(INTENT_FILTER);
+        Intent intent = new Intent(INTENT_FILTER_DAY);
+        Intent intent2 = new Intent(INTENT_FILTER_MINUTE);
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), UPDATE_STEP, intent, 0);
 
@@ -189,9 +191,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         Calendar calendar = Calendar.getInstance();
 
-        calendar.set(Calendar.HOUR_OF_DAY, 15);
-        calendar.set(Calendar.MINUTE, 7);
-        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 11);
+        calendar.set(Calendar.MINUTE, 38);
+        calendar.set(Calendar.SECOND, 10);
 
         //Change the third parameter to see changes sooner
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 1000 * 60, pendingIntent);
@@ -199,32 +201,38 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         updateReceiver=new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                Toast.makeText(context, "Group Project Toast message", Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "Updating listStepCount");
+                if (INTENT_FILTER_DAY.equals(intent.getAction())) {
+                    Toast.makeText(context, "Group Project Toast message", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "Updating listStepCount");
 
 
-                //CCHART DATA
-                dataList.add(new BarEntry(hour, stepCount));
-                BarDataSet barDataSet1 = new BarDataSet(dataList, "Dataset 1");
+                    //CHART DATA
+                    dataList.add(new BarEntry(hour, stepCount));
 
-                BarData barData = new BarData(barDataSet1);
+                    //Removing Old Weekly Data
+                    if (dataList.size() > 7) {
+                        dataList.remove(0);
+                    }
+                    BarDataSet barDataSet1 = new BarDataSet(dataList, "Dataset 1");
 
-                barChart.setData(barData);
-                barChart.invalidate();
-                hour++;
+                    BarData barData = new BarData(barDataSet1);
+
+                    barChart.setData(barData);
+                    barChart.invalidate();
+                    hour++;
 
 
-
-                listStepCount.add(stepCount);
-                listStepCounterTextView.setText(listStepCount.toString());
-                //stepCount = 0;
-                stepCounterTextView.setText(Integer.toString(stepCount));
-
+                    listStepCount.add(stepCount);
+                    listStepCounterTextView.setText(listStepCount.toString());
+                    //stepCount = 0;
+                    stepCounterTextView.setText(Integer.toString(stepCount));
+                }
             }
         };
 
-        IntentFilter updateIntentFilter = new IntentFilter(INTENT_FILTER);
+        IntentFilter updateIntentFilter = new IntentFilter(INTENT_FILTER_DAY);
         registerReceiver(updateReceiver, updateIntentFilter);
+
     }
 
 }
