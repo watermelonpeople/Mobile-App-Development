@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private static final String INTENT_FILTER_DAY = "edu.neu.madcourse.groupproject.IntentFilterDay";
     private static final String INTENT_FILTER_MINUTE = "edu.neu.madcourse.groupproject.IntentFilterMinute";
 
-    private int day = 0; //for debugging, pretend this is the hour
-    private int stepCount = 0; //associated with stepCounterTextView
+    private int day; //for debugging, pretend this is the day
+    private int stepCount; //associated with stepCounterTextView
     private List<Integer> listStepCount = new ArrayList<>(); //associated with listTextView
 
     private TextView stepCounterTextView;
@@ -63,9 +63,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         barChart = findViewById(R.id.mp_BarChart);
 
         stepCounterTextView = findViewById(R.id.stepCounterTextView);
+        stepCount = 0;
         stepCounterTextView.setText(Integer.toString(stepCount));
 
         listStepCounterTextView = findViewById(R.id.listStepCounterTextView);
+        listStepCount.add(0);
         listStepCounterTextView.setText(listStepCount.toString());
 
         //private method to set up our step detector
@@ -75,11 +77,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         XAxis xAxis = barChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         YAxis left = barChart.getAxisLeft();
-        //left.setAxisMaximum(500f);
+        left.setAxisMaximum(1000f);
         left.setAxisMinimum(0f);
         barChart.getAxisRight().setEnabled(false);
 
         dataList = new ArrayList<>();
+        dataList.add(new BarEntry(day, stepCount));
         BarDataSet barDataSet1 = new BarDataSet(dataList, "Dataset 1");
 
         BarData barData = new BarData();
@@ -131,6 +134,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 stepCount += event.values[0];
                 Log.d(TAG, Integer.toString(stepCount));
                 stepCounterTextView.setText(Integer.toString(stepCount));
+
+                //Testing hopefully doesnt break the phone
+                if (!dataList.isEmpty() && !listStepCount.isEmpty()) {
+
+                    dataList.remove(dataList.size() - 1);
+                    dataList.add(new BarEntry(day, stepCount));
+
+                    BarDataSet barDataSet1 = new BarDataSet(dataList, "Dataset 1");
+
+                    BarData barData = new BarData(barDataSet1);
+
+                    barChart.setData(barData);
+                    barChart.invalidate();
+
+                    listStepCount.remove(listStepCount.size() - 1);
+                    listStepCount.add(stepCount);
+
+                    listStepCounterTextView.setText(listStepCount.toString());
+                }
                 break;
         }
     }
@@ -190,15 +212,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         Calendar calendar = Calendar.getInstance();
 
-        calendar.set(Calendar.HOUR_OF_DAY, 16);
-        calendar.set(Calendar.MINUTE, 40);
+        calendar.set(Calendar.HOUR_OF_DAY, 21);
+        calendar.set(Calendar.MINUTE, 30);
         calendar.set(Calendar.SECOND, 0);
 
         //Change the third parameter to see changes sooner
         //Updates every 12 minutes
-        alarmManagerDay.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 1000 * 60 * 3, pendingIntentDay);
+        alarmManagerDay.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 1000 * 60 * 5, pendingIntentDay);
         //updates every 5 minutes
-        alarmManagerMinute.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 1000 * 60, pendingIntentMinute);
+        alarmManagerMinute.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 1000 * 60 * 1, pendingIntentMinute);
 
         updateReceiver = new BroadcastReceiver() {
             @Override
@@ -212,6 +234,28 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     Toast.makeText(context, "Group Project Toast Day", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "Updating today");
 
+                    //basically INTENT_FILTER_MINUTE aka store our final steps for the day before we restart a new day
+
+                    if (!dataList.isEmpty() && !listStepCount.isEmpty()) {
+                        dataList.remove(dataList.size() - 1);
+                        dataList.add(new BarEntry(day, stepCount));
+
+                        BarDataSet barDataSet1 = new BarDataSet(dataList, "Dataset 1");
+
+                        BarData barData = new BarData(barDataSet1);
+
+                        barChart.setData(barData);
+                        barChart.invalidate();
+
+                        listStepCount.remove(listStepCount.size() - 1);
+                        listStepCount.add(stepCount);
+
+                        listStepCounterTextView.setText(listStepCount.toString());
+                    }
+
+                    //reset stepCount since we are starting a new day
+                    stepCount = 0;
+                    stepCounterTextView.setText(Integer.toString(stepCount));
 
                     //CHART DATA
                     dataList.add(new BarEntry(day, stepCount));
@@ -220,6 +264,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     if (dataList.size() > 7) {
                         dataList.remove(0);
                     }
+
                     BarDataSet barDataSet1 = new BarDataSet(dataList, "Dataset 1");
 
                     BarData barData = new BarData(barDataSet1);
@@ -241,8 +286,23 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     Toast.makeText(context, "Group Project Toast Minute", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "Updating minute");
 
+                    //If its empty we add stuff.
                     if (dataList.isEmpty() && listStepCount.isEmpty()) {
-                        Log.d(TAG, "Lists are empty");
+                        Log.d(TAG, "Lists are empty; setting stepCount to 0, dataList.add(0), listStepCount.add(0)");
+                        stepCount = 0;
+                        stepCounterTextView.setText(Integer.toString(stepCount));
+                        dataList.add(new BarEntry(day, stepCount));
+                        BarDataSet barDataSet1 = new BarDataSet(dataList, "Dataset 1");
+
+                        BarData barData = new BarData(barDataSet1);
+
+                        barChart.setData(barData);
+                        barChart.invalidate();
+                        day++;
+
+                        listStepCount.add(stepCount);
+
+                        listStepCounterTextView.setText(listStepCount.toString());
                         return;
                     }
 
