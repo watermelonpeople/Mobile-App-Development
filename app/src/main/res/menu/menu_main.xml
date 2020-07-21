@@ -10,7 +10,7 @@
         android:orderInCategory="300"
         android:title="User"
         android:icon="@drawable/ic_baseline_directions_walk_24"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
 
     <item
@@ -18,14 +18,14 @@
         android:orderInCategory="300"
         android:title="Profile"
         android:icon="@drawable/ic_baseline_account_circle_24"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_Game"
         android:orderInCategory="300"
         android:title="Game"
         android:icon="@drawable/ic_baseline_videogame_asset_24"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
 
 
 
