@@ -6,27 +6,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class SettingsActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_game);
 
         Toolbar toolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
-
-
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_settings, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -45,11 +44,12 @@ public class SettingsActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.action_Profile:
-                Toast.makeText(SettingsActivity.this, "Settings clicked", Toast.LENGTH_LONG).show();
+                finish();
+                Intent intent = new Intent(this,SettingsActivity.class);
+                startActivity(intent);
                 break;
             case R.id.action_Game:
-                finish();
-                startActivity(new Intent(this,GameActivity.class));
+                Toast.makeText(GameActivity.this, "Game clicked", Toast.LENGTH_LONG).show();
                 break;
 
         }

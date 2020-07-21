@@ -100,11 +100,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 Toast.makeText(MainActivity.this, "Walk clicked", Toast.LENGTH_LONG).show();
                 break;
             case R.id.action_Profile:
-                Intent intent = new Intent(this,SettingsActivity.class);
-                startActivity(intent);
+                Intent intent1 = new Intent(this,SettingsActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.action_Game:
-                Toast.makeText(MainActivity.this, "Game clicked", Toast.LENGTH_LONG).show();
+                Intent intent2 = new Intent(this,GameActivity.class);
+                startActivity(intent2);
                 break;
 
         }
