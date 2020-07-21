@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".SettingsActivity">
+
+
+    <item
+        android:id="@+id/action_Walk"
+        android:orderInCategory="300"
+        android:title="User"
+        android:icon="@drawable/ic_baseline_directions_walk_24"
+        app:showAsAction="always" />
+
+
+    <item
+        android:id="@+id/action_Profile"
+        android:orderInCategory="300"
+        android:title="Profile"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_Game"
+        android:orderInCategory="300"
+        android:title="Game"
+        android:icon="@drawable/ic_baseline_videogame_asset_24"
+        app:showAsAction="always"/>
+
+
+
+</menu>
