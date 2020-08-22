@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.6"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/walking" />
+
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.70"
+        android:background="@drawable/background_rounded_corners"
+        android:fontFamily="@font/lemonada"
+        android:foreground="@android:color/transparent"
+        android:onClick="onClick"
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_settings" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -15,5 +39,249 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/AppTheme.PopupOverlay"
         app:theme="@style/AppTheme.AppBarOverlay" />
+
+    <LinearLayout
+
+        android:id="@+id/linearLayout_settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/my_toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:alpha="0.70"
+            android:background="@drawable/background_rounded_corners"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:layout_weight="0.5"
+                android:fontFamily="@font/lemonada"
+                android:gravity="center"
+                android:text="Daily Goal Step :"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+
+            <Spinner
+                android:id="@+id/steps_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_margin="10dp"
+                android:layout_weight="0.5" />
+            <!--            <EditText-->
+            <!--                android:id="@+id/editText1"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="40dp"-->
+            <!--                android:layout_margin="10dp"-->
+            <!--                android:layout_weight="0.5"-->
+            <!--                android:inputType="textPersonName"-->
+            <!--                android:textSize="18sp" />-->
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:alpha="0.70"
+            android:background="@drawable/background_rounded_corners"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/lemonada"
+                android:gravity="center"
+                android:text="Select Gender :"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <RadioGroup
+                android:id="@+id/radioGrp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:buttonTint="@color/black"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioM"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/black"
+                    android:fontFamily="@font/lemonada"
+                    android:text="Male"
+                    android:textSize="12dp" />
+
+                <RadioButton
+                    android:id="@+id/radioF"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/black"
+                    android:checked="false"
+                    android:fontFamily="@font/lemonada"
+                    android:text="Female"
+                    android:textSize="12dp" />
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:alpha="0.70"
+            android:background="@drawable/background_rounded_corners"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/lemonada"
+                android:gravity="center"
+                android:text="Set Height:"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/feet_spinner"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_margin="10dp"
+                android:layout_weight="0.5"
+                android:dropDownWidth="100dp"
+                android:popupTheme="@style/AppTheme.PopupSpinner" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="0.5"
+                android:fontFamily="@font/lemonada"
+                android:gravity="center"
+                android:text="Ft"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <!--            <Spinner-->
+            <!--                android:id="@+id/inch_spinner"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="40dp"-->
+            <!--                android:layout_margin="10dp"-->
+            <!--                android:layout_weight="1.5"-->
+            <!--              />-->
+
+            <!--            <TextView-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="40dp"-->
+            <!--                android:layout_weight="0.5"-->
+            <!--                android:gravity="center"-->
+            <!--                android:text="In"-->
+            <!--                android:textSize="14sp" />-->
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:alpha="0.70"
+            android:background="@drawable/background_rounded_corners"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/lemonada"
+                android:gravity="center"
+                android:text="Set Height:"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/inch_spinner"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_margin="10dp"
+                android:layout_weight="0.5"
+                android:dropDownWidth="100dp"
+                android:popupTheme="@style/AppTheme.PopupSpinner" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="0.5"
+                android:fontFamily="@font/lemonada"
+                android:gravity="center"
+                android:text="In"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:alpha="0.70"
+            android:background="@drawable/background_rounded_corners"
+            android:gravity="center"
+            android:weightSum="8">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:layout_weight="4"
+                android:fontFamily="@font/lemonada"
+                android:gravity="center"
+                android:text="Set Weight :"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/weight_spinner"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_margin="10dp"
+                android:layout_weight="3"
+                android:dropDownWidth="100dp"
+                android:popupTheme="@style/AppTheme.PopupSpinner" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/lemonada"
+                android:gravity="center"
+                android:text="Lbs"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

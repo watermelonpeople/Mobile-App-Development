@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/restRelaxId"
+        android:title="R&amp;R"
+        android:icon="@drawable/bottom_navigation_view_rest_relax"/>
+
+    <item
+        android:id="@+id/workId"
+        android:title="Work"
+        android:icon="@drawable/bottom_navigation_view_work"/>
+
+    <item
+        android:id="@+id/studyId"
+        android:title="Study"
+        android:icon="@drawable/bottom_navigation_view_study"/>
+
+    <item
+        android:id="@+id/helpId"
+        android:title="Help"
+        android:icon="@drawable/bottom_navigation_view_help"/>
+
+</menu>

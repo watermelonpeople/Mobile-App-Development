@@ -9,10 +9,11 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/walking"
-        android:scaleType="centerCrop"
         android:alpha="0.6"
-        />
+        android:scaleType="centerCrop"
+        android:src="@mipmap/setting"
+        tools:layout_editor_absoluteX="-39dp"
+        tools:layout_editor_absoluteY="27dp" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -63,16 +64,19 @@
     <!--        app:layout_constraintTop_toBottomOf="@+id/textView" />-->
 
     <RelativeLayout
-        android:id="@+id/relativeLayout"
+        android:id="@+id/relativeLayout_today"
         android:layout_width="213dp"
         android:layout_height="213dp"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/total_layout"
+        android:alpha="0.7"
+        android:background="@drawable/background_circular_shadow"
+        android:clickable="true"
+        android:onClick="onClick"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout_switcher"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/my_toolbar">
 
         <ProgressBar
             android:id="@+id/today_step"
@@ -81,6 +85,7 @@
             android:layout_height="match_parent"
             android:layout_marginHorizontal="4dp"
             android:background="@drawable/circle_shape"
+            android:foreground="?android:attr/selectableItemBackground"
             android:indeterminate="false"
             android:max="100"
             android:progress="80"
@@ -91,14 +96,14 @@
 
             android:id="@+id/showTodaySteps"
             android:layout_width="wrap_content"
-
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="70dp"
             android:gravity="center_vertical"
             android:text="@string/show_today_step"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/showSteps"
@@ -117,200 +122,540 @@
             android:textColor="@color/black"
             android:textSize="25sp" />
 
+
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/total_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/second_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_switcher">
 
         <LinearLayout
-            android:id="@+id/week_layout"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="15dp"
+            android:alpha="0.7"
+            android:background="@drawable/background_rounded_corners"
 
+            android:orientation="vertical">
 
             <ProgressBar
-                android:id="@+id/progressBar_sunday"
+                android:id="@+id/progressBar_1"
                 style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginHorizontal="4dp"
                 android:background="@drawable/circle_shape"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:indeterminate="false"
                 android:max="100"
+                android:onClick="onClick"
                 android:progress="80"
                 android:progressDrawable="@drawable/circular_progress_bar" />
 
-            <ProgressBar
-                android:id="@+id/progressBar_saturday"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginHorizontal="4dp"
-
-                android:background="@drawable/circle_shape"
-                android:indeterminate="false"
-                android:max="100"
-                android:progress="80"
-                android:progressDrawable="@drawable/circular_progress_bar"
-                />
-
-            <ProgressBar
-                android:id="@+id/progressBar_friday"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginHorizontal="4dp"
-
-                android:background="@drawable/circle_shape"
-                android:indeterminate="false"
-                android:max="100"
-                android:progress="80"
-                android:progressDrawable="@drawable/circular_progress_bar"
-                />
-
-            <ProgressBar
-                android:id="@+id/progressBar_thursday"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginHorizontal="4dp"
-
-                android:background="@drawable/circle_shape"
-                android:indeterminate="false"
-                android:max="100"
-                android:progress="42"
-                android:progressDrawable="@drawable/circular_progress_bar"
-                />
-
-            <ProgressBar
-                android:id="@+id/progressBar_wednesday"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginHorizontal="4dp"
-
-                android:background="@drawable/circle_shape"
-                android:indeterminate="false"
-                android:max="100"
-                android:progress="56"
-                android:progressDrawable="@drawable/circular_progress_bar"
-                />
-
-            <ProgressBar
-                android:id="@+id/progressBar_tuesday"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginHorizontal="4dp"
-
-                android:background="@drawable/circle_shape"
-                android:indeterminate="false"
-                android:max="100"
-                android:progress="80"
-                android:progressDrawable="@drawable/circular_progress_bar"
-                />
-
-            <ProgressBar
-                android:id="@+id/progressBar_monday"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-
-                android:layout_marginHorizontal="4dp"
-
-                android:background="@drawable/circle_shape"
-                android:indeterminate="false"
-                android:max="100"
-                android:progress="80"
-                android:progressDrawable="@drawable/circular_progress_bar"
-                />
-
-
+            <TextView
+                android:id="@+id/TX_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:gravity="center"
+                android:text="Mon."
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/weekname_layout"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/week_layout"
-            android:layout_margin="10dp"
-            android:gravity="center_horizontal">
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="15dp"
+            android:alpha="0.7"
+            android:background="@drawable/background_rounded_corners"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:id="@+id/progressBar_2"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="4dp"
+                android:background="@drawable/circle_shape"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:indeterminate="false"
+                android:max="100"
+                android:onClick="onClick"
+                android:progress="80"
+                android:progressDrawable="@drawable/circular_progress_bar" />
 
             <TextView
-                android:id="@+id/TX_monday"
+                android:id="@+id/TX_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
+                android:layout_marginHorizontal="15dp"
                 android:gravity="center"
-                android:text="Mon." />
-
-            <TextView
-                android:id="@+id/TX_tuesday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:gravity="center"
-                android:text="Tue." />
-
-            <TextView
-                android:id="@+id/TX_wednesday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:gravity="center"
-                android:text="Wed." />
-
-            <TextView
-                android:id="@+id/TX_thursday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:gravity="center"
-                android:text="Thu." />
-
-            <TextView
-                android:id="@+id/TX_friday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:gravity="center"
-                android:text="Fri." />
-
-            <TextView
-                android:id="@+id/TX_saturday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:gravity="center"
-                android:text="Sat." />
-
-            <TextView
-                android:id="@+id/TX_sunday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:gravity="center"
-                android:text="Sun." />
+                android:text="Tue."
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
         </LinearLayout>
-    </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="15dp"
+            android:alpha="0.7"
+            android:background="@drawable/background_rounded_corners"
+            android:gravity="fill_vertical"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:id="@+id/progressBar_3"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="4dp"
+                android:background="@drawable/circle_shape"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:indeterminate="false"
+                android:max="100"
+                android:onClick="onClick"
+                android:progress="80"
+                android:progressDrawable="@drawable/circular_progress_bar" />
+
+            <TextView
+                android:id="@+id/TX_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="14dp"
+                android:gravity="center"
+                android:text="Wed."
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="15dp"
+            android:alpha="0.7"
+            android:background="@drawable/background_rounded_corners"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:id="@+id/progressBar_4"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="4dp"
+
+                android:background="@drawable/circle_shape"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:indeterminate="false"
+                android:max="100"
+                android:onClick="onClick"
+                android:progress="80"
+                android:progressDrawable="@drawable/circular_progress_bar" />
+
+            <TextView
+                android:id="@+id/TX_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="14dp"
+                android:gravity="center"
+                android:text="Thu."
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <!--        <LinearLayout-->
+        <!--            android:id="@+id/week_layout"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_margin="10dp"-->
+        <!--            android:gravity="center_horizontal"-->
+        <!--            android:orientation="horizontal">-->
+
+
+        <!--            <ProgressBar-->
+        <!--                android:id="@+id/progressBar_1"-->
+        <!--                style="?android:attr/progressBarStyleHorizontal"-->
+        <!--                android:layout_width="42dp"-->
+        <!--                android:layout_height="42dp"-->
+        <!--                android:layout_marginHorizontal="4dp"-->
+        <!--                android:background="@drawable/circle_shape"-->
+        <!--                android:indeterminate="false"-->
+        <!--                android:max="100"-->
+        <!--                android:clickable="true"-->
+        <!--                android:onClick="onClick"-->
+        <!--                android:progress="80"-->
+        <!--                android:progressDrawable="@drawable/circular_progress_bar" />-->
+
+        <!--            <ProgressBar-->
+        <!--                android:id="@+id/progressBar_2"-->
+        <!--                style="?android:attr/progressBarStyleHorizontal"-->
+        <!--                android:layout_width="42dp"-->
+        <!--                android:layout_height="42dp"-->
+        <!--                android:layout_marginHorizontal="4dp"-->
+        <!--                android:clickable="true"-->
+        <!--                android:onClick="onClick"-->
+        <!--                android:background="@drawable/circle_shape"-->
+        <!--                android:indeterminate="false"-->
+        <!--                android:max="100"-->
+        <!--                android:progress="80"-->
+        <!--                android:progressDrawable="@drawable/circular_progress_bar" />-->
+
+        <!--            <ProgressBar-->
+        <!--                android:id="@+id/progressBar_3"-->
+        <!--                style="?android:attr/progressBarStyleHorizontal"-->
+        <!--                android:layout_width="42dp"-->
+        <!--                android:layout_height="42dp"-->
+        <!--                android:layout_marginHorizontal="4dp"-->
+        <!--                android:clickable="true"-->
+        <!--                android:onClick="onClick"-->
+        <!--                android:background="@drawable/circle_shape"-->
+        <!--                android:indeterminate="false"-->
+        <!--                android:max="100"-->
+        <!--                android:progress="80"-->
+        <!--                android:progressDrawable="@drawable/circular_progress_bar" />-->
+
+        <!--            <ProgressBar-->
+        <!--                android:id="@+id/progressBar_4"-->
+        <!--                style="?android:attr/progressBarStyleHorizontal"-->
+        <!--                android:layout_width="42dp"-->
+        <!--                android:layout_height="42dp"-->
+        <!--                android:layout_marginHorizontal="4dp"-->
+        <!--                android:clickable="true"-->
+        <!--                android:onClick="onClick"-->
+        <!--                android:background="@drawable/circle_shape"-->
+        <!--                android:indeterminate="false"-->
+        <!--                android:max="100"-->
+        <!--                android:progress="42"-->
+        <!--                android:progressDrawable="@drawable/circular_progress_bar" />-->
+
+        <!--            <ProgressBar-->
+        <!--                android:id="@+id/progressBar_5"-->
+        <!--                style="?android:attr/progressBarStyleHorizontal"-->
+        <!--                android:layout_width="42dp"-->
+        <!--                android:layout_height="42dp"-->
+        <!--                android:layout_marginHorizontal="4dp"-->
+        <!--                android:clickable="true"-->
+        <!--                android:onClick="onClick"-->
+        <!--                android:background="@drawable/circle_shape"-->
+        <!--                android:indeterminate="false"-->
+        <!--                android:max="100"-->
+        <!--                android:progress="56"-->
+        <!--                android:progressDrawable="@drawable/circular_progress_bar" />-->
+
+        <!--            <ProgressBar-->
+        <!--                android:id="@+id/progressBar_6"-->
+        <!--                style="?android:attr/progressBarStyleHorizontal"-->
+        <!--                android:layout_width="42dp"-->
+        <!--                android:layout_height="42dp"-->
+        <!--                android:layout_marginHorizontal="4dp"-->
+        <!--                android:clickable="true"-->
+        <!--                android:onClick="onClick"-->
+        <!--                android:background="@drawable/circle_shape"-->
+        <!--                android:indeterminate="false"-->
+        <!--                android:max="100"-->
+        <!--                android:progress="80"-->
+        <!--                android:progressDrawable="@drawable/circular_progress_bar" />-->
+
+        <!--            <ProgressBar-->
+        <!--                android:id="@+id/progressBar_7"-->
+        <!--                style="?android:attr/progressBarStyleHorizontal"-->
+        <!--                android:layout_width="42dp"-->
+        <!--                android:layout_height="42dp"-->
+        <!--                android:layout_marginHorizontal="4dp"-->
+        <!--                android:background="@drawable/circle_shape"-->
+        <!--                android:clickable="true"-->
+        <!--                android:onClick="onClick"-->
+        <!--                android:indeterminate="false"-->
+        <!--                android:max="100"-->
+
+        <!--                android:progress="80"-->
+        <!--                android:progressDrawable="@drawable/circular_progress_bar" />-->
+
+
+        <!--        </LinearLayout>-->
+
+        <!--        <LinearLayout-->
+        <!--            android:id="@+id/weekname_layout"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@+id/week_layout"-->
+        <!--            android:layout_margin="10dp"-->
+        <!--            android:gravity="center_horizontal">-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/TX_1"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginHorizontal="12dp"-->
+        <!--                android:gravity="center"-->
+        <!--                android:text="Mon." />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/TX_2"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginHorizontal="12dp"-->
+        <!--                android:gravity="center"-->
+        <!--                android:text="Tue." />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/TX_3"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginHorizontal="12dp"-->
+        <!--                android:gravity="center"-->
+        <!--                android:text="Wed." />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/TX_4"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginHorizontal="12dp"-->
+        <!--                android:gravity="center"-->
+        <!--                android:text="Thu." />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/TX_5"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginHorizontal="12dp"-->
+        <!--                android:gravity="center"-->
+        <!--                android:text="Fri." />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/TX_6"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginHorizontal="12dp"-->
+        <!--                android:gravity="center"-->
+        <!--                android:text="Sat." />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/TX_7"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginHorizontal="12dp"-->
+        <!--                android:gravity="center"-->
+        <!--                android:text="Sun." />-->
+        <!--        </LinearLayout>-->
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/second_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/total_layout">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="15dp"
+            android:alpha="0.7"
+            android:background="@drawable/background_rounded_corners"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:id="@+id/progressBar_5"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="4dp"
+                android:background="@drawable/circle_shape"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:indeterminate="false"
+                android:max="100"
+                android:onClick="onClick"
+                android:progress="80"
+                android:progressDrawable="@drawable/circular_progress_bar" />
+
+            <TextView
+                android:id="@+id/TX_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:gravity="center"
+                android:text="Fri."
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="15dp"
+            android:alpha="0.7"
+            android:background="@drawable/background_rounded_corners"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:id="@+id/progressBar_6"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="50dp"
+                android:layout_height="51dp"
+                android:layout_marginHorizontal="4dp"
+                android:background="@drawable/circle_shape"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:indeterminate="false"
+                android:max="100"
+                android:onClick="onClick"
+                android:progress="80"
+                android:progressDrawable="@drawable/circular_progress_bar" />
+
+            <TextView
+                android:id="@+id/TX_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="14dp"
+                android:gravity="center"
+                android:text="Sat."
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="15dp"
+            android:alpha="0.7"
+            android:background="@drawable/background_rounded_corners"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:id="@+id/progressBar_7"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="4dp"
+                android:background="@drawable/circle_shape"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:indeterminate="false"
+                android:max="100"
+                android:onClick="onClick"
+                android:progress="80"
+                android:progressDrawable="@drawable/circular_progress_bar" />
+
+            <TextView
+                android:id="@+id/TX_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:gravity="center"
+                android:text="Sun."
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:alpha="0.70"
+        android:background="@drawable/background_rounded_corners"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="onClick"
+        android:text="Weekly Steps"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/total_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/second_layout" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout_switcher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/total_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout_today">
+
+        <!--        <TextView-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Pedometer Function"-->
+        <!--            android:textSize="18sp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            android:textColor="@color/black"-->
+        <!--            android:layout_marginHorizontal="10dp"/>-->
+
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:alpha="0.70"
+            android:background="@drawable/background_rounded_corners"
+            android:checked="true"
+            android:switchPadding="10dp"
+            android:text="Pedometer Start/Stop"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:theme="@style/MySwitch"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout_today" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_icon_foreground" />
+
+        <TextView
+            android:id="@+id/toGo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lemonada"
+            android:gravity="center"
+            android:text="Still 0 steps to go"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

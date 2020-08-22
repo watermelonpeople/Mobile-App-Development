@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/firstHelpTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Hi! This help section will outline the basics of the StepCounter: RPG Game.\n\nIn this game, there are four resources:\n"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/energyHelpImageView"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@mipmap/resource_energy"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstHelpTextView" />
+
+    <TextView
+        android:id="@+id/energyHelpTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Energy. Increased by steps in the real world."
+        app:layout_constraintStart_toEndOf="@+id/energyHelpImageView"
+        app:layout_constraintTop_toBottomOf="@+id/firstHelpTextView" />
+
+    <ImageView
+        android:id="@+id/hungerHelpImageView"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@mipmap/resource_food"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/energyHelpImageView" />
+
+    <TextView
+        android:id="@+id/hungerHelpTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:text="Hunger. Increased by in-game eating."
+        app:layout_constraintStart_toEndOf="@+id/hungerHelpImageView"
+        app:layout_constraintTop_toBottomOf="@+id/energyHelpTextView" />
+
+    <ImageView
+        android:id="@+id/moneyHelpImageView"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@mipmap/resource_money"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hungerHelpImageView" />
+
+    <TextView
+        android:id="@+id/moneyHelpTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:text="Money. Increased by in-game working."
+        app:layout_constraintStart_toEndOf="@+id/moneyHelpImageView"
+        app:layout_constraintTop_toBottomOf="@+id/hungerHelpTextView" />
+
+    <ImageView
+        android:id="@+id/moodHelpImageView"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@mipmap/resource_mood"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/moneyHelpImageView" />
+
+    <TextView
+        android:id="@+id/moodHelpTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:text="Mood. Increased by in-game relaxation."
+        app:layout_constraintStart_toEndOf="@+id/moodHelpImageView"
+        app:layout_constraintTop_toBottomOf="@+id/moneyHelpTextView" />
+
+    <TextView
+        android:id="@+id/lastHelpTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="You can spend these resources on different activities such as going to work, going on a world cruise, or getting a degree. Just like in the real world, if you don't have enough of a resource, you can't do certain tasks.\n\nThe more you walk, the higher the change of spawning random rewards! Keep on walking!\n\nThat's all! Hope you enjoy the app!\n\nNOTE: This is a demo version of the app for the testers to play around with. The energy costs of activities is artificial low, and the occurence rates of random events are all much higher than they normally would be."
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/moodHelpImageView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

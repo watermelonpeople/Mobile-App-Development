@@ -7,6 +7,7 @@
         <item name="colorAccent">@color/colorAccent</item>
 
     </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -17,7 +18,16 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="HeaderBar">
-        <item name="android:background">#007DD6</item>
+        <item name="android:background">#000000</item>
     </style>
 
+    <style name="AppTheme.PopupSpinner" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="MySwitch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">#000000</item>
+        <item name="colorSwitchThumbNormal">#f1f1f1</item>
+        <item name="android:colorForeground">#42221f</item>
+    </style>
 </resources>
